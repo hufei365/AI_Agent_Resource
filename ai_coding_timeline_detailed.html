@@ -1,0 +1,211 @@
+
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: var(--font-sans); }
+.tl { padding: 1.5rem 0 2rem; }
+.phase-block { margin-bottom: 2rem; }
+.phase-label { display: flex; align-items: center; gap: 10px; margin-bottom: 1rem; padding-bottom: 0.5rem; border-bottom: 0.5px solid var(--color-border-tertiary); }
+.phase-pill { font-size: 11px; font-weight: 500; padding: 3px 10px; border-radius: 20px; letter-spacing: 0.04em; white-space: nowrap; }
+.ph1 { background: #EEEDFE; color: #3C3489; }
+.ph2 { background: #E1F5EE; color: #085041; }
+.ph3 { background: #FAECE7; color: #712B13; }
+.ph4 { background: #FAEEDA; color: #633806; }
+.phase-desc-short { font-size: 12px; color: var(--color-text-tertiary); }
+.events { display: flex; flex-direction: column; gap: 0; }
+.event { display: grid; grid-template-columns: 90px 20px 1fr; gap: 0 12px; position: relative; }
+.event-date { font-size: 12px; color: var(--color-text-tertiary); text-align: right; padding: 0 0 0 0; line-height: 1; padding-top: 2px; white-space: nowrap; }
+.event-spine { display: flex; flex-direction: column; align-items: center; }
+.event-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; margin-top: 4px; }
+.event-line { width: 1.5px; flex: 1; min-height: 12px; }
+.event:last-child .event-line { display: none; }
+.event-body { padding-bottom: 14px; }
+.event-title { font-size: 14px; font-weight: 500; color: var(--color-text-primary); line-height: 1.4; margin-bottom: 3px; }
+.event-sub { font-size: 12px; color: var(--color-text-secondary); line-height: 1.6; }
+.event-tag { display: inline-block; font-size: 10px; padding: 1px 6px; border-radius: 3px; margin-right: 4px; margin-bottom: 2px; font-weight: 500; vertical-align: middle; }
+.tag-launch { background: #E1F5EE; color: #085041; }
+.tag-model { background: #EEEDFE; color: #3C3489; }
+.tag-concept { background: #FAEEDA; color: #633806; }
+.tag-event { background: #FAECE7; color: #712B13; }
+.tag-tool { background: #F1EFE8; color: #444441; }
+
+.d1 { background: #7F77DD; }
+.d1line { background: #CECBF6; }
+.d2 { background: #1D9E75; }
+.d2line { background: #9FE1CB; }
+.d3 { background: #D85A30; }
+.d3line { background: #F5C4B3; }
+.d4 { background: #BA7517; }
+.d4line { background: #FAC775; }
+
+.star-event .event-dot { width: 10px; height: 10px; margin-top: 3px; }
+.star-event .event-title { font-size: 14px; }
+
+.now-marker { display: flex; align-items: center; gap: 8px; margin-top: 1rem; padding: 8px 12px; background: var(--color-background-secondary); border-radius: var(--border-radius-md); border: 0.5px solid var(--color-border-secondary); }
+.now-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--color-text-primary); flex-shrink: 0; }
+.now-text { font-size: 12px; color: var(--color-text-secondary); }
+</style>
+
+<div class="tl">
+
+  <div class="phase-block">
+    <div class="phase-label">
+      <span class="phase-pill ph1">阶段一 · 网页问答</span>
+      <span class="phase-desc-short">把 AI 当高级搜索引擎用</span>
+    </div>
+    <div class="events">
+      <div class="event">
+        <div class="event-date">2021 年 6 月</div>
+        <div class="event-spine"><div class="event-dot d1"></div><div class="event-line d1line"></div></div>
+        <div class="event-body">
+          <div class="event-title">GitHub Copilot 技术预览上线 <span class="event-tag tag-launch">首发</span></div>
+          <div class="event-sub">OpenAI Codex 驱动，仅限 VS Code，代码补全首次进入大众视野。开始有人把代码粘贴进对话框问 AI。</div>
+        </div>
+      </div>
+      <div class="event">
+        <div class="event-date">2022 年 6 月</div>
+        <div class="event-spine"><div class="event-dot d1"></div><div class="event-line d1line"></div></div>
+        <div class="event-body">
+          <div class="event-title">GitHub Copilot 正式对外开放 <span class="event-tag tag-launch">GA</span></div>
+          <div class="event-sub">首月新增 40 万付费用户。标志着 AI 辅助编程开始规模化，但交互仍是 IDE 之外的"复制粘贴"方式。</div>
+        </div>
+      </div>
+      <div class="event star-event">
+        <div class="event-date">2022 年 11 月</div>
+        <div class="event-spine"><div class="event-dot d1"></div><div class="event-line d1line"></div></div>
+        <div class="event-body">
+          <div class="event-title">ChatGPT 上线（2022.11.30）<span class="event-tag tag-event">里程碑</span></div>
+          <div class="event-sub">5 天 100 万用户，两个月 1 亿用户，史上最快增长的消费应用。开发者开始大规模用聊天界面写代码、问问题——"网页问答"模式爆发。</div>
+        </div>
+      </div>
+      <div class="event">
+        <div class="event-date">2023 年 3 月</div>
+        <div class="event-spine"><div class="event-dot d1"></div><div class="event-line d1line"></div></div>
+        <div class="event-body">
+          <div class="event-title">GPT-4 发布 + ChatGPT API 开放 <span class="event-tag tag-model">模型</span></div>
+          <div class="event-sub">能力跃升，开发者涌入。大量产品开始接入 API，但交互范式仍是"问答"——人问 AI 答，代码自己粘贴。</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="phase-block">
+    <div class="phase-label">
+      <span class="phase-pill ph2">阶段二 · IDE 插件内联辅助</span>
+      <span class="phase-desc-short">AI 进入编辑器，能"看见"你的代码</span>
+    </div>
+    <div class="events">
+      <div class="event star-event">
+        <div class="event-date">2023 年 3 月</div>
+        <div class="event-spine"><div class="event-dot d2"></div><div class="event-line d2line"></div></div>
+        <div class="event-body">
+          <div class="event-title">Cursor 发布（基于 VS Code fork）<span class="event-tag tag-launch">首发</span></div>
+          <div class="event-sub">Anysphere 四位 MIT 毕业生创立。AI 原生 IDE，Chat 与代码并排，首个真正"嵌入项目"的 AI 编码体验。到当年 11 月已索引 15 万个代码库。</div>
+        </div>
+      </div>
+      <div class="event">
+        <div class="event-date">2023 年下半年</div>
+        <div class="event-spine"><div class="event-dot d2"></div><div class="event-line d2line"></div></div>
+        <div class="event-body">
+          <div class="event-title">Continue、通义灵码等陆续涌现 <span class="event-tag tag-tool">工具潮</span></div>
+          <div class="event-sub">IDE 插件赛道爆发。GitHub Copilot Chat 上线，国内通义灵码、文心快码相继推出。行业共识：AI 要进编辑器，有代码上下文才有用。</div>
+        </div>
+      </div>
+      <div class="event">
+        <div class="event-date">2024 年 6 月</div>
+        <div class="event-spine"><div class="event-dot d2"></div><div class="event-line d2line"></div></div>
+        <div class="event-body">
+          <div class="event-title">Cursor 完成 6000 万美元 A 轮 <span class="event-tag tag-event">融资</span></div>
+          <div class="event-sub">a16z 领投，验证"AI 原生 IDE"方向。Cursor 引入 Composer 模式——首个支持多文件编辑的主流 IDE 插件，开始向 Agent 过渡。</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="phase-block">
+    <div class="phase-label">
+      <span class="phase-pill ph3">阶段三 · 编程 Agent 自主执行</span>
+      <span class="phase-desc-short">AI 从"建议者"变为"执行者"</span>
+    </div>
+    <div class="events">
+      <div class="event star-event">
+        <div class="event-date">2024 年 3 月 12 日</div>
+        <div class="event-spine"><div class="event-dot d3"></div><div class="event-line d3line"></div></div>
+        <div class="event-body">
+          <div class="event-title">Devin 发布——首个"AI 软件工程师" <span class="event-tag tag-event">范式转移</span></div>
+          <div class="event-sub">Cognition Labs 发布，Demo 视频在 X 上获 3000 万次播放。首次让外界意识到 AI 可以自主完成完整工程任务：写代码 → 运行 → 报错 → 修复，全自动循环。</div>
+        </div>
+      </div>
+      <div class="event">
+        <div class="event-date">2025 年 2 月</div>
+        <div class="event-spine"><div class="event-dot d3"></div><div class="event-line d3line"></div></div>
+        <div class="event-body">
+          <div class="event-title">Claude Code 研究预览上线 <span class="event-tag tag-launch">首发</span></div>
+          <div class="event-sub">Anthropic 发布，终端原生 Agent，可读写文件、执行命令、提交 Git。核心差异：不是 IDE 插件，而是直接驻留在终端里的 Agent。</div>
+        </div>
+      </div>
+      <div class="event star-event">
+        <div class="event-date">2025 年 5 月</div>
+        <div class="event-spine"><div class="event-dot d3"></div><div class="event-line d3line"></div></div>
+        <div class="event-body">
+          <div class="event-title">Claude Code GA + Claude 4 发布 <span class="event-tag tag-launch">GA</span><span class="event-tag tag-model">模型</span></div>
+          <div class="event-sub">正式商用，支持 GitHub Actions 后台任务、VS Code / JetBrains 原生集成。Opus 4 在 SWE-bench 达到 72.5%。Agent 编程进入主流。</div>
+        </div>
+      </div>
+      <div class="event">
+        <div class="event-date">2025 年 11 月</div>
+        <div class="event-spine"><div class="event-dot d3"></div><div class="event-line d3line"></div></div>
+        <div class="event-body">
+          <div class="event-title">Claude Code 年化营收突破 10 亿美元 <span class="event-tag tag-event">数据</span></div>
+          <div class="event-sub">发布 6 个月内破 10 亿，2026 年初逼近 20 亿。Cursor 同月年化营收突破 10 亿，估值 293 亿美元。Agent 赛道全面商业化。</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="phase-block">
+    <div class="phase-label">
+      <span class="phase-pill ph4">阶段四 · Harness 工程</span>
+      <span class="phase-desc-short">驾驭 Agent，设计让 AI 可靠工作的系统</span>
+    </div>
+    <div class="events">
+      <div class="event">
+        <div class="event-date">2025 年 8 月</div>
+        <div class="event-spine"><div class="event-dot d4"></div><div class="event-line d4line"></div></div>
+        <div class="event-body">
+          <div class="event-title">AGENTS.md 规范发布 <span class="event-tag tag-concept">规范</span></div>
+          <div class="event-sub">OpenAI、Google、Cursor、Factory 等联合制定，Agent 跨工具行为约束文件的开放标准，Harness 工程的基础设施开始标准化。</div>
+        </div>
+      </div>
+      <div class="event">
+        <div class="event-date">2025 年 12 月</div>
+        <div class="event-spine"><div class="event-dot d4"></div><div class="event-line d4line"></div></div>
+        <div class="event-body">
+          <div class="event-title">Karpathy 提出"上下文工程"概念 <span class="event-tag tag-concept">概念</span></div>
+          <div class="event-sub">Andrej Karpathy 在 X 发文，区分 Prompt Engineering 与 Context Engineering，引发工程师重新审视"如何给 Agent 提供信息"的问题。</div>
+        </div>
+      </div>
+      <div class="event star-event">
+        <div class="event-date">2026 年 2 月 11 日</div>
+        <div class="event-spine"><div class="event-dot d4"></div><div class="event-line d4line"></div></div>
+        <div class="event-body">
+          <div class="event-title">OpenAI 正式定义"Harness 工程" <span class="event-tag tag-concept">里程碑</span></div>
+          <div class="event-sub">Ryan Lopopolo 发文，记录以零手写代码交付百万行生产应用的经验，提出 Agent = Model + Harness，Humans steer, Agents execute。Mitchell Hashimoto 的原创思想获正式命名。</div>
+        </div>
+      </div>
+      <div class="event">
+        <div class="event-date">2026 年 2 月</div>
+        <div class="event-spine"><div class="event-dot d4"></div><div class="event-line d4line"></div></div>
+        <div class="event-body">
+          <div class="event-title">Karpathy 提出"Agentic Engineering"概念 <span class="event-tag tag-concept">概念</span></div>
+          <div class="event-sub">与 Harness 工程形成互补：前者关注如何设计约束与反馈系统，后者关注如何为多 Agent 协同构建工程方法论。行业开始形成新的工程师角色共识。</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="now-marker">
+    <div class="now-dot"></div>
+    <div class="now-text">现在（2026 年 5 月）— Harness 工程实践仍在快速演化，行业规范持续形成中</div>
+  </div>
+
+</div>

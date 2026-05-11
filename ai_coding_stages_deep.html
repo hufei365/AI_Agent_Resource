@@ -1,0 +1,266 @@
+
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: var(--font-sans); }
+
+.wrap { padding: 1.5rem 0 2.5rem; }
+
+.stage { margin-bottom: 2.5rem; border: 0.5px solid var(--color-border-tertiary); border-radius: var(--border-radius-lg); overflow: hidden; }
+
+.stage-head { padding: 1rem 1.25rem; border-bottom: 0.5px solid var(--color-border-tertiary); display: flex; align-items: flex-start; justify-content: space-between; gap: 1rem; }
+.stage-left { flex: 1; }
+.stage-num { font-size: 11px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 4px; }
+.stage-title { font-size: 16px; font-weight: 500; color: var(--color-text-primary); margin-bottom: 3px; }
+.stage-era { font-size: 12px; color: var(--color-text-tertiary); }
+.stage-role { font-size: 12px; padding: 4px 10px; border-radius: 20px; font-weight: 500; white-space: nowrap; flex-shrink: 0; align-self: flex-start; margin-top: 2px; }
+
+.s1 .stage-num { color: #534AB7; }
+.s1 .stage-role { background: #EEEDFE; color: #3C3489; }
+.s2 .stage-num { color: #0F6E56; }
+.s2 .stage-role { background: #E1F5EE; color: #085041; }
+.s3 .stage-num { color: #993C1D; }
+.s3 .stage-role { background: #FAECE7; color: #712B13; }
+.s4 .stage-num { color: #854F0B; }
+.s4 .stage-role { background: #FAEEDA; color: #633806; }
+
+.stage-body { display: grid; grid-template-columns: 1fr 1fr 1fr; }
+
+.col { padding: 1rem 1.25rem; }
+.col + .col { border-left: 0.5px solid var(--color-border-tertiary); }
+.col-label { font-size: 10px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.09em; color: var(--color-text-tertiary); margin-bottom: 0.75rem; display: flex; align-items: center; gap: 6px; }
+.col-label i { font-size: 14px; }
+
+.flow { display: flex; flex-direction: column; gap: 4px; }
+.flow-step { display: flex; align-items: flex-start; gap: 8px; }
+.flow-icon { width: 20px; height: 20px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 10px; font-weight: 500; flex-shrink: 0; margin-top: 1px; }
+.s1 .flow-icon { background: #EEEDFE; color: #3C3489; }
+.s2 .flow-icon { background: #E1F5EE; color: #085041; }
+.s3 .flow-icon { background: #FAECE7; color: #712B13; }
+.s4 .flow-icon { background: #FAEEDA; color: #633806; }
+.flow-arrow { font-size: 11px; color: var(--color-text-tertiary); padding: 0 0 0 10px; }
+.flow-text { font-size: 12px; color: var(--color-text-secondary); line-height: 1.6; }
+.flow-text strong { color: var(--color-text-primary); font-weight: 500; }
+
+.pain-list { display: flex; flex-direction: column; gap: 8px; }
+.pain-item { display: flex; align-items: flex-start; gap: 8px; }
+.pain-icon { width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0; margin-top: 6px; }
+.s1 .pain-icon { background: #7F77DD; }
+.s2 .pain-icon { background: #1D9E75; }
+.s3 .pain-icon { background: #D85A30; }
+.s4 .pain-icon { background: #BA7517; }
+.pain-text { font-size: 12px; color: var(--color-text-secondary); line-height: 1.6; }
+.pain-text strong { color: var(--color-text-primary); font-weight: 500; }
+
+.shift-box { border-radius: var(--border-radius-md); padding: 10px 12px; }
+.s1 .shift-box { background: #EEEDFE; border: 0.5px solid #AFA9EC; }
+.s2 .shift-box { background: #E1F5EE; border: 0.5px solid #5DCAA5; }
+.s3 .shift-box { background: #FAECE7; border: 0.5px solid #F0997B; }
+.s4 .shift-box { background: #FAEEDA; border: 0.5px solid #EF9F27; }
+.shift-label { font-size: 10px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 5px; }
+.s1 .shift-label { color: #534AB7; }
+.s2 .shift-label { color: #0F6E56; }
+.s3 .shift-label { color: #993C1D; }
+.s4 .shift-label { color: #854F0B; }
+.shift-text { font-size: 12px; line-height: 1.65; }
+.s1 .shift-text { color: #3C3489; }
+.s2 .shift-text { color: #085041; }
+.s3 .shift-text { color: #712B13; }
+.s4 .shift-text { color: #633806; }
+
+.nextstep { margin-top: 0.75rem; padding-top: 0.75rem; border-top: 0.5px solid var(--color-border-tertiary); font-size: 12px; color: var(--color-text-tertiary); display: flex; align-items: flex-start; gap: 6px; }
+.nextstep i { font-size: 13px; flex-shrink: 0; margin-top: 1px; }
+
+@media (max-width: 580px) {
+  .stage-body { grid-template-columns: 1fr; }
+  .col + .col { border-left: none; border-top: 0.5px solid var(--color-border-tertiary); }
+}
+</style>
+
+<div class="wrap">
+<h2 class="sr-only" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0)">AI 编程四个阶段的主要形式与痛点详解</h2>
+
+<div class="stage s1">
+  <div class="stage-head">
+    <div class="stage-left">
+      <div class="stage-num">阶段一 · 2021—2023</div>
+      <div class="stage-title">网页对话问答</div>
+      <div class="stage-era">ChatGPT / Claude.ai / 文心一言</div>
+    </div>
+    <div class="stage-role">工程师角色：提问者 + 执行者</div>
+  </div>
+  <div class="stage-body">
+    <div class="col">
+      <div class="col-label"><i class="ti ti-repeat" aria-hidden="true"></i>主要使用形式</div>
+      <div class="flow">
+        <div class="flow-step"><div class="flow-icon">1</div><div class="flow-text"><strong>复制代码</strong>粘贴进聊天框</div></div>
+        <div class="flow-arrow">↓</div>
+        <div class="flow-step"><div class="flow-icon">2</div><div class="flow-text">描述问题 / 需求（往往语焉不详）</div></div>
+        <div class="flow-arrow">↓</div>
+        <div class="flow-step"><div class="flow-icon">3</div><div class="flow-text">拿到回答，<strong>手动复制</strong>粘贴回编辑器</div></div>
+        <div class="flow-arrow">↓</div>
+        <div class="flow-step"><div class="flow-icon">4</div><div class="flow-text">发现不对，再回去继续问（新对话从零开始）</div></div>
+      </div>
+      <div style="margin-top:10px; padding: 8px 10px; background: var(--color-background-secondary); border-radius: var(--border-radius-md); font-size:12px; color:var(--color-text-secondary); line-height:1.6;">
+        典型场景：问"帮我写一个 Python 函数"、"解释这段报错"、"给我一个 SQL 查询"
+      </div>
+    </div>
+    <div class="col">
+      <div class="col-label"><i class="ti ti-alert-triangle" aria-hidden="true"></i>核心痛点</div>
+      <div class="pain-list">
+        <div class="pain-item"><div class="pain-icon"></div><div class="pain-text"><strong>零上下文：</strong>AI 不知道你的项目结构、命名规范、依赖版本，给出的代码要大量改造才能用</div></div>
+        <div class="pain-item"><div class="pain-icon"></div><div class="pain-text"><strong>搬运摩擦：</strong>每次都要在浏览器和编辑器之间切换，复制粘贴本身就消耗大量注意力</div></div>
+        <div class="pain-item"><div class="pain-icon"></div><div class="pain-text"><strong>对话无记忆：</strong>新开一个对话，之前的背景全部归零，同样的背景要反复解释</div></div>
+        <div class="pain-item"><div class="pain-icon"></div><div class="pain-text"><strong>幻觉难识别：</strong>API 名字、函数签名经常编造，看起来合理但跑起来报错，新手很难甄别</div></div>
+        <div class="pain-item"><div class="pain-icon"></div><div class="pain-text"><strong>只问单文件：</strong>涉及多文件交互的问题，靠手动粘贴几乎无法准确描述完整关系</div></div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="col-label"><i class="ti ti-bulb" aria-hidden="true"></i>核心矛盾 & 演化动力</div>
+      <div class="shift-box">
+        <div class="shift-label">矛盾本质</div>
+        <div class="shift-text">AI 生活在聊天框里，代码生活在编辑器里。两者之间没有桥梁，人成了唯一的"数据搬运工"。</div>
+      </div>
+      <div class="nextstep"><i class="ti ti-arrow-right" aria-hidden="true"></i><span>推动了 IDE 插件方向：把 AI 搬进编辑器，消灭物理切换成本，让 AI 直接"看见"代码。</span></div>
+    </div>
+  </div>
+</div>
+
+<div class="stage s2">
+  <div class="stage-head">
+    <div class="stage-left">
+      <div class="stage-num">阶段二 · 2023—2024</div>
+      <div class="stage-title">IDE 插件 · 内联辅助</div>
+      <div class="stage-era">GitHub Copilot / Cursor / Continue / 通义灵码</div>
+    </div>
+    <div class="stage-role">工程师角色：提问者 + 执行者（少了搬运）</div>
+  </div>
+  <div class="stage-body">
+    <div class="col">
+      <div class="col-label"><i class="ti ti-repeat" aria-hidden="true"></i>主要使用形式</div>
+      <div class="flow">
+        <div class="flow-step"><div class="flow-icon">1</div><div class="flow-text"><strong>Tab 补全：</strong>写一半，AI 自动续写当前行或整个函数</div></div>
+        <div class="flow-arrow">↓</div>
+        <div class="flow-step"><div class="flow-icon">2</div><div class="flow-text"><strong>内联 Chat：</strong>选中一段代码，直接问"解释这段 / 帮我重构"，结果贴在旁边</div></div>
+        <div class="flow-arrow">↓</div>
+        <div class="flow-step"><div class="flow-icon">3</div><div class="flow-text"><strong>侧边对话：</strong>当前文件 + 少量关联文件作为上下文，问更复杂的问题</div></div>
+        <div class="flow-arrow">↓</div>
+        <div class="flow-step"><div class="flow-icon">4</div><div class="flow-text">AI 给出 diff，<strong>人来 Accept / Reject</strong>，最终执行仍靠人</div></div>
+      </div>
+      <div style="margin-top:10px; padding: 8px 10px; background: var(--color-background-secondary); border-radius: var(--border-radius-md); font-size:12px; color:var(--color-text-secondary); line-height:1.6;">
+        典型场景：写注释自动生成函数体、选中函数问"有没有 bug"、边写边接受 Tab 建议
+      </div>
+    </div>
+    <div class="col">
+      <div class="col-label"><i class="ti ti-alert-triangle" aria-hidden="true"></i>核心痛点</div>
+      <div class="pain-list">
+        <div class="pain-item"><div class="pain-icon"></div><div class="pain-text"><strong>单文件局限：</strong>上下文窗口有限，AI 只能看见当前文件，跨文件的调用关系、类型依赖无法感知</div></div>
+        <div class="pain-item"><div class="pain-icon"></div><div class="pain-text"><strong>仍需人逐步执行：</strong>AI 给建议，人来改代码，人来跑测试，人来看报错——节奏仍是"建议→人动手"</div></div>
+        <div class="pain-item"><div class="pain-icon"></div><div class="pain-text"><strong>Tab 依赖症：</strong>过度接受补全建议会让工程师对代码失去掌控感，"加了一段不知道为什么的代码"</div></div>
+        <div class="pain-item"><div class="pain-icon"></div><div class="pain-text"><strong>大任务拆不开：</strong>"帮我实现这个功能"这类任务，AI 只能给代码片段，工程师需要自己把片段拼起来</div></div>
+        <div class="pain-item"><div class="pain-icon"></div><div class="pain-text"><strong>无法调用工具：</strong>AI 无法跑测试、看终端输出、调用命令行，只能生成静态文本</div></div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="col-label"><i class="ti ti-bulb" aria-hidden="true"></i>核心矛盾 & 演化动力</div>
+      <div class="shift-box">
+        <div class="shift-label">矛盾本质</div>
+        <div class="shift-text">AI 能看见代码了，但仍不能"动"代码。每一个改动、每一次测试、每一次修复，仍需要人来点击、执行、观察。</div>
+      </div>
+      <div class="nextstep"><i class="ti ti-arrow-right" aria-hidden="true"></i><span>推动了 Agent 方向：让 AI 不只给建议，而是直接读写文件、跑命令、形成自主闭环。</span></div>
+    </div>
+  </div>
+</div>
+
+<div class="stage s3">
+  <div class="stage-head">
+    <div class="stage-left">
+      <div class="stage-num">阶段三 · 2024—2025</div>
+      <div class="stage-title">编程 Agent · 自主执行</div>
+      <div class="stage-era">Claude Code / Devin / Cursor Agent / GitHub Copilot Workspace</div>
+    </div>
+    <div class="stage-role">工程师角色：任务描述者 + 审核者</div>
+  </div>
+  <div class="stage-body">
+    <div class="col">
+      <div class="col-label"><i class="ti ti-repeat" aria-hidden="true"></i>主要使用形式</div>
+      <div class="flow">
+        <div class="flow-step"><div class="flow-icon">1</div><div class="flow-text"><strong>自然语言描述目标：</strong>"帮我给 user 表加一个 email 验证功能"</div></div>
+        <div class="flow-arrow">↓</div>
+        <div class="flow-step"><div class="flow-icon">2</div><div class="flow-text">Agent <strong>自主探索代码库</strong>，读取相关文件，理解项目结构</div></div>
+        <div class="flow-arrow">↓</div>
+        <div class="flow-step"><div class="flow-icon">3</div><div class="flow-text">Agent <strong>写代码 → 跑测试 → 读报错 → 自修复</strong>，多轮循环</div></div>
+        <div class="flow-arrow">↓</div>
+        <div class="flow-step"><div class="flow-icon">4</div><div class="flow-text">人<strong>审核 PR / diff</strong>，决定是否接受，而非逐行指挥</div></div>
+      </div>
+      <div style="margin-top:10px; padding: 8px 10px; background: var(--color-background-secondary); border-radius: var(--border-radius-md); font-size:12px; color:var(--color-text-secondary); line-height:1.6;">
+        典型场景：让 Agent 实现整个功能模块、迁移框架版本、修复一批 Bug、写全套测试
+      </div>
+    </div>
+    <div class="col">
+      <div class="col-label"><i class="ti ti-alert-triangle" aria-hidden="true"></i>核心痛点</div>
+      <div class="pain-list">
+        <div class="pain-item"><div class="pain-icon"></div><div class="pain-text"><strong>安全漏洞激增：</strong>2025 年 6 月数据，AI 引入的安全漏洞每月超 1 万个，是年初的 10 倍</div></div>
+        <div class="pain-item"><div class="pain-icon"></div><div class="pain-text"><strong>审计跟不上速度：</strong>代码生成速度远超人工审查能力，"写得快、查不完"</div></div>
+        <div class="pain-item"><div class="pain-icon"></div><div class="pain-text"><strong>架构静默漂移：</strong>Agent 会选择旧依赖、绕过现有约定，几次迭代后代码库开始偏离既定架构</div></div>
+        <div class="pain-item"><div class="pain-icon"></div><div class="pain-text"><strong>错误难以预测：</strong>失败不规律——同样的任务有时成功有时跑偏，调试成本转移给了审核环节</div></div>
+        <div class="pain-item"><div class="pain-icon"></div><div class="pain-text"><strong>多 Agent 协同混乱：</strong>多个 Agent 并行工作时，冲突、重复修改、互相覆盖的问题无法用"告诉它别这样做"解决</div></div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="col-label"><i class="ti ti-bulb" aria-hidden="true"></i>核心矛盾 & 演化动力</div>
+      <div class="shift-box">
+        <div class="shift-label">矛盾本质</div>
+        <div class="shift-text">Agent 太快了。速度优势反而成了问题——生成的代码无法被同等速度地审查和验证，可靠性成了新瓶颈。</div>
+      </div>
+      <div class="nextstep"><i class="ti ti-arrow-right" aria-hidden="true"></i><span>推动了 Harness 工程：不靠"告诉 AI 别犯错"，而是构建系统性约束，让错误从机制上不可能发生。</span></div>
+    </div>
+  </div>
+</div>
+
+<div class="stage s4">
+  <div class="stage-head">
+    <div class="stage-left">
+      <div class="stage-num">阶段四 · 2026 至今</div>
+      <div class="stage-title">Harness 工程 · 驾驭 Agent</div>
+      <div class="stage-era">AGENTS.md / Rules files / CI gates / PEV loops</div>
+    </div>
+    <div class="stage-role">工程师角色：系统设计者 + 掌舵人</div>
+  </div>
+  <div class="stage-body">
+    <div class="col">
+      <div class="col-label"><i class="ti ti-repeat" aria-hidden="true"></i>主要使用形式</div>
+      <div class="flow">
+        <div class="flow-step"><div class="flow-icon">1</div><div class="flow-text"><strong>Rules files / AGENTS.md：</strong>把约束写成文件，Agent 启动时自动注入，告知边界、禁区、规范</div></div>
+        <div class="flow-arrow">↓</div>
+        <div class="flow-step"><div class="flow-icon">2</div><div class="flow-text"><strong>确定性 CI 门禁：</strong>Linter、安全扫描、类型检查全部设为 error 级，违规直接拦截 PR</div></div>
+        <div class="flow-arrow">↓</div>
+        <div class="flow-step"><div class="flow-icon">3</div><div class="flow-text"><strong>PEV 验证循环：</strong>Plan → Execute → Verify，每步结果自动检查，不通过则 Agent 自行重试</div></div>
+        <div class="flow-arrow">↓</div>
+        <div class="flow-step"><div class="flow-icon">4</div><div class="flow-text">工程师<strong>分析 Agent 犯错模式</strong>，将修复逻辑写入 Harness，而非事后人工修补</div></div>
+      </div>
+      <div style="margin-top:10px; padding: 8px 10px; background: var(--color-background-secondary); border-radius: var(--border-radius-md); font-size:12px; color:var(--color-text-secondary); line-height:1.6;">
+        典型场景：写 AGENTS.md 定义代码规范、把安全规则接入 CI、设计 Agent 任务拆分策略
+      </div>
+    </div>
+    <div class="col">
+      <div class="col-label"><i class="ti ti-alert-triangle" aria-hidden="true"></i>当前挑战</div>
+      <div class="pain-list">
+        <div class="pain-item"><div class="pain-icon"></div><div class="pain-text"><strong>Harness 本身需要专业设计：</strong>设计约束系统要求深厚的系统工程经验，入门门槛比"写提示词"高得多</div></div>
+        <div class="pain-item"><div class="pain-icon"></div><div class="pain-text"><strong>行业规范尚未成熟：</strong>AGENTS.md 等标准 2025 年 8 月才刚起步，最佳实践仍在快速演化中</div></div>
+        <div class="pain-item"><div class="pain-icon"></div><div class="pain-text"><strong>工程师角色转型阵痛：</strong>从"写代码"到"设计写代码的系统"，思维方式需要重构，很多人还未完成转变</div></div>
+        <div class="pain-item"><div class="pain-icon"></div><div class="pain-text"><strong>责任边界模糊：</strong>AI 写的代码出了问题，谁负责？如何在团队中建立共识、划定审核责任</div></div>
+        <div class="pain-item"><div class="pain-icon"></div><div class="pain-text"><strong>过度依赖风险：</strong>当 Harness 运行良好，工程师对底层代码的掌控感会进一步降低，长期影响待观察</div></div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="col-label"><i class="ti ti-bulb" aria-hidden="true"></i>核心洞见</div>
+      <div class="shift-box">
+        <div class="shift-label">范式本质</div>
+        <div class="shift-text">从"我来写代码"→"我来设计让代码被可靠写出来的系统"。更好的 Harness 往往比更好的模型更重要——赢家是设计了最好 Agent 环境的团队，不是用了最贵模型的团队。</div>
+      </div>
+      <div class="nextstep"><i class="ti ti-dots" aria-hidden="true"></i><span>开放问题：这条演化曲线的下一步是什么？多 Agent 协作系统、AI 自我改进 Harness？仍在探索中。</span></div>
+    </div>
+  </div>
+</div>
+
+</div>

@@ -1,0 +1,255 @@
+
+<style>
+  :root { --accent-1: #533AB7; --accent-2: #0F6E56; --accent-3: #993C1D; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: var(--font-sans); }
+  .lesson { padding: 2rem 0; }
+  .lesson-header { margin-bottom: 2.5rem; border-bottom: 0.5px solid var(--color-border-tertiary); padding-bottom: 1.5rem; }
+  .tag { display: inline-block; font-size: 11px; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; background: var(--color-background-secondary); color: var(--color-text-secondary); border: 0.5px solid var(--color-border-tertiary); border-radius: 4px; padding: 3px 8px; margin-bottom: 0.75rem; }
+  h1 { font-size: 22px; font-weight: 500; color: var(--color-text-primary); line-height: 1.3; margin-bottom: 0.5rem; }
+  .subtitle { font-size: 14px; color: var(--color-text-secondary); }
+  .meta-row { display: flex; gap: 1.5rem; margin-top: 1rem; }
+  .meta-item { font-size: 13px; color: var(--color-text-secondary); }
+  .meta-item strong { color: var(--color-text-primary); font-weight: 500; }
+
+  .hook-box { background: var(--color-background-secondary); border-radius: var(--border-radius-lg); padding: 1.25rem 1.5rem; margin-bottom: 2.5rem; border-left: 3px solid var(--color-border-tertiary); }
+  .hook-label { font-size: 11px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.08em; color: var(--color-text-tertiary); margin-bottom: 0.5rem; }
+  .hook-q { font-size: 18px; font-weight: 500; color: var(--color-text-primary); margin-bottom: 0.25rem; }
+  .hook-hint { font-size: 13px; color: var(--color-text-secondary); }
+
+  .section-title { font-size: 11px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.1em; color: var(--color-text-tertiary); margin-bottom: 1rem; }
+
+  .levels { display: flex; flex-direction: column; gap: 1.5rem; margin-bottom: 2.5rem; }
+  .level-card { border-radius: var(--border-radius-lg); border: 0.5px solid var(--color-border-tertiary); background: var(--color-background-primary); overflow: hidden; }
+  .level-header { display: flex; align-items: center; gap: 1rem; padding: 1rem 1.25rem; border-bottom: 0.5px solid var(--color-border-tertiary); }
+  .level-num { width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 500; flex-shrink: 0; }
+  .l1 .level-num { background: #EEEDFE; color: #3C3489; }
+  .l2 .level-num { background: #E1F5EE; color: #085041; }
+  .l3 .level-num { background: #FAECE7; color: #712B13; }
+  .level-name { font-size: 15px; font-weight: 500; color: var(--color-text-primary); }
+  .level-en { font-size: 12px; color: var(--color-text-tertiary); margin-top: 1px; }
+  .level-body { padding: 1rem 1.25rem; }
+  .level-concept { font-size: 14px; color: var(--color-text-secondary); line-height: 1.7; margin-bottom: 1rem; border-bottom: 0.5px solid var(--color-border-tertiary); padding-bottom: 1rem; }
+  .level-concept em { font-style: normal; font-weight: 500; color: var(--color-text-primary); }
+
+  .example-row { display: flex; gap: 12px; margin-bottom: 0.75rem; }
+  .ex-label { font-size: 11px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.07em; color: var(--color-text-tertiary); width: 56px; flex-shrink: 0; padding-top: 2px; }
+  .ex-content { flex: 1; }
+  .question-box { background: var(--color-background-secondary); border-radius: var(--border-radius-md); padding: 8px 12px; font-size: 13px; color: var(--color-text-secondary); line-height: 1.6; }
+  .question-box .q { color: var(--color-text-primary); font-weight: 500; margin-bottom: 2px; }
+  .level-insight { font-size: 12px; color: var(--color-text-tertiary); margin-top: 0.75rem; padding: 8px 12px; border-left: 2px solid var(--color-border-secondary); line-height: 1.6; }
+  .l1 .level-insight { border-left-color: #AFA9EC; }
+  .l2 .level-insight { border-left-color: #5DCAA5; }
+  .l3 .level-insight { border-left-color: #F0997B; }
+
+  .ladder { margin-bottom: 2.5rem; }
+  .ladder-svg-wrap { width: 100%; overflow: hidden; border-radius: var(--border-radius-lg); border: 0.5px solid var(--color-border-tertiary); }
+
+  .discussion { margin-bottom: 2rem; }
+  .disc-items { display: flex; flex-direction: column; gap: 10px; }
+  .disc-item { display: flex; gap: 12px; align-items: flex-start; padding: 10px 14px; border-radius: var(--border-radius-md); background: var(--color-background-secondary); }
+  .disc-icon { font-size: 16px; flex-shrink: 0; margin-top: 1px; }
+  .disc-text { font-size: 14px; color: var(--color-text-secondary); line-height: 1.6; }
+  .disc-text strong { color: var(--color-text-primary); font-weight: 500; }
+
+  .summary-table { width: 100%; border-collapse: collapse; font-size: 13px; border-radius: var(--border-radius-lg); overflow: hidden; border: 0.5px solid var(--color-border-tertiary); }
+  .summary-table thead { background: var(--color-background-secondary); }
+  .summary-table th { padding: 10px 12px; text-align: left; font-weight: 500; color: var(--color-text-secondary); border-bottom: 0.5px solid var(--color-border-tertiary); }
+  .summary-table td { padding: 10px 12px; color: var(--color-text-secondary); border-bottom: 0.5px solid var(--color-border-tertiary); vertical-align: top; }
+  .summary-table tr:last-child td { border-bottom: none; }
+  .summary-table td:first-child { font-weight: 500; color: var(--color-text-primary); }
+  .badge { display: inline-block; font-size: 11px; padding: 2px 8px; border-radius: 4px; font-weight: 500; }
+  .b-purple { background: #EEEDFE; color: #3C3489; }
+  .b-teal { background: #E1F5EE; color: #085041; }
+  .b-coral { background: #FAECE7; color: #712B13; }
+</style>
+
+<div class="lesson">
+  <div class="lesson-header">
+    <div class="tag">教案</div>
+    <h1>大模型使用的三个层次</h1>
+    <p class="subtitle">提示词工程 · 上下文工程 · Agent 工程</p>
+    <div class="meta-row">
+      <div class="meta-item"><strong>切入点</strong> 「1 + 1 等于几？」</div>
+      <div class="meta-item"><strong>目标受众</strong> 有一定 AI 使用经验的学习者</div>
+      <div class="meta-item"><strong>核心目标</strong> 理解三层递进关系</div>
+    </div>
+  </div>
+
+  <div class="hook-box">
+    <div class="hook-label">课堂导入</div>
+    <div class="hook-q">1 + 1 等于几？</div>
+    <div class="hook-hint">先别急着回答——我们用这个问题来理解三种不同的思维层次。</div>
+  </div>
+
+  <div class="section-title">三个层次 · 逐层深入</div>
+  <div class="levels">
+
+    <div class="level-card l1">
+      <div class="level-header">
+        <div class="level-num">1</div>
+        <div>
+          <div class="level-name">提示词工程</div>
+          <div class="level-en">Prompt Engineering</div>
+        </div>
+      </div>
+      <div class="level-body">
+        <div class="level-concept">
+          核心问题：<em>我怎么问，才能得到更好的答案？</em><br>
+          关注的是单次输入如何写得更精准、更有效。技巧在于措辞、格式、角色设定。
+        </div>
+        <div class="example-row">
+          <div class="ex-label">弱提示</div>
+          <div class="ex-content">
+            <div class="question-box"><div class="q">「1 + 1 等于几？」</div>模型答：2。对，但没什么用。</div>
+          </div>
+        </div>
+        <div class="example-row">
+          <div class="ex-label">强提示</div>
+          <div class="ex-content">
+            <div class="question-box"><div class="q">「你是一位小学数学老师，用孩子能听懂的方式解释 1 + 1 = 2。」</div>模型现在给出了类比、解释、例子——因为<em>角色 + 格式 + 目标</em>都在提示里了。</div>
+          </div>
+        </div>
+        <div class="level-insight">💡 提示词工程的本质：你在一句话里压缩了足够多的信息，让模型猜对你的意图。</div>
+      </div>
+    </div>
+
+    <div class="level-card l2">
+      <div class="level-header">
+        <div class="level-num">2</div>
+        <div>
+          <div class="level-name">上下文工程</div>
+          <div class="level-en">Context Engineering</div>
+        </div>
+      </div>
+      <div class="level-body">
+        <div class="level-concept">
+          核心问题：<em>我怎么给模型提供更完整的世界？</em><br>
+          不只是一句话，而是精心设计放进对话窗口里的所有信息——记忆、文档、历史、身份、状态。
+        </div>
+        <div class="example-row">
+          <div class="ex-label">场景</div>
+          <div class="ex-content">
+            <div class="question-box">
+              <div class="q">同样问「1 + 1 等于几？」——但上下文不同，答案完全不同：</div>
+              <br>
+              · <strong>二进制计算机科学</strong>上下文 → 1 + 1 = 10<br>
+              · <strong>布尔逻辑</strong>上下文 → 1 + 1 = 1（OR）或 0（XOR）<br>
+              · <strong>哲学</strong>上下文 → 整体大于部分之和<br>
+              · <strong>孩子的作业</strong>上下文 → 2，并配合图示说明
+            </div>
+          </div>
+        </div>
+        <div class="example-row">
+          <div class="ex-label">工程侧</div>
+          <div class="ex-content">
+            <div class="question-box">把用户历史、RAG 检索结果、系统人设、当前任务状态全部注入上下文窗口——模型看到的世界由你来设计。</div>
+          </div>
+        </div>
+        <div class="level-insight">💡 上下文工程的本质：答案永远是对的，因为你给了模型一个完整的世界。</div>
+      </div>
+    </div>
+
+    <div class="level-card l3">
+      <div class="level-header">
+        <div class="level-num">3</div>
+        <div>
+          <div class="level-name">Agent 工程</div>
+          <div class="level-en">Agent Engineering</div>
+        </div>
+      </div>
+      <div class="level-body">
+        <div class="level-concept">
+          核心问题：<em>模型能不能自己去弄清楚 1 + 1 是什么意思，然后给我答案？</em><br>
+          不再是你喂给模型信息，而是让模型主动感知、规划、调用工具、执行、反思。
+        </div>
+        <div class="example-row">
+          <div class="ex-label">执行链</div>
+          <div class="ex-content">
+            <div class="question-box">
+              <div class="q">Agent 接收模糊任务：「帮我算 1 + 1」</div>
+              <br>
+              1. <strong>感知</strong>：读取用户背景，判断这是数学题还是哲学题<br>
+              2. <strong>规划</strong>：分解步骤，决定是否调用计算器工具<br>
+              3. <strong>执行</strong>：调用工具，得到结果<br>
+              4. <strong>反思</strong>：答案对吗？用户满意吗？要不要追问？<br>
+              5. <strong>记忆</strong>：把这次偏好存下来，下次更准
+            </div>
+          </div>
+        </div>
+        <div class="example-row">
+          <div class="ex-label">关键变化</div>
+          <div class="ex-content">
+            <div class="question-box">从「问答」变成了「协作」——模型从被动回答者变成主动执行者，上下文由模型自己去<em>动态构建</em>。</div>
+          </div>
+        </div>
+        <div class="level-insight">💡 Agent 工程的本质：你不再设计答案，而是设计一个会自己找答案的系统。</div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="section-title">横向对比</div>
+  <div style="margin-bottom: 2.5rem; overflow-x: auto;">
+    <table class="summary-table">
+      <thead>
+        <tr>
+          <th>维度</th>
+          <th><span class="badge b-purple">提示词工程</span></th>
+          <th><span class="badge b-teal">上下文工程</span></th>
+          <th><span class="badge b-coral">Agent 工程</span></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>操作者</td>
+          <td>人精心写提示</td>
+          <td>系统注入上下文</td>
+          <td>模型自主行动</td>
+        </tr>
+        <tr>
+          <td>信息来源</td>
+          <td>你的一句话</td>
+          <td>预设的知识库/历史</td>
+          <td>模型动态获取</td>
+        </tr>
+        <tr>
+          <td>交互次数</td>
+          <td>一次</td>
+          <td>一次（丰富输入）</td>
+          <td>多轮自主循环</td>
+        </tr>
+        <tr>
+          <td>类比</td>
+          <td>聪明地提问</td>
+          <td>给足参考资料再问</td>
+          <td>交给助手自己去办</td>
+        </tr>
+        <tr>
+          <td>「1+1」的答案</td>
+          <td>取决于怎么问</td>
+          <td>取决于你在哪个世界</td>
+          <td>模型自己判断你要什么</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="section-title">课堂讨论点</div>
+  <div class="discussion">
+    <div class="disc-items">
+      <div class="disc-item">
+        <div class="disc-icon"><i class="ti ti-arrows-up" aria-hidden="true"></i></div>
+        <div class="disc-text"><strong>三层递进，不是替代：</strong>好的 Agent 系统里，仍然需要优质的提示词和精心的上下文设计——它们是地基，不是被淘汰的旧技术。</div>
+      </div>
+      <div class="disc-item">
+        <div class="disc-icon"><i class="ti ti-bulb" aria-hidden="true"></i></div>
+        <div class="disc-text"><strong>「1+1」的比喻价值：</strong>同一个问题在不同层次下会有不同答案，说明模型不是查字典——它是在<em>根据你提供的世界来推理</em>。</div>
+      </div>
+      <div class="disc-item">
+        <div class="disc-icon"><i class="ti ti-route" aria-hidden="true"></i></div>
+        <div class="disc-text"><strong>学习路径建议：</strong>从提示词工程开始打基础 → 学会上下文设计来构建产品 → 掌握 Agent 工程来解决复杂任务。</div>
+      </div>
+    </div>
+  </div>
+</div>
